@@ -1,0 +1,27 @@
+/.csslintrc
+/.eslintignore
+/.eslintrc.json
+/.ht.router.php
+/.htaccess
+/INSTALL.txt
+/README.md
+/autoload.php
+/example.gitignore
+/index.php
+/robots.txt
+/update.php
+
+# Ignore core when managing all of a project's dependencies with Composer
+/core
+/modules/contrib/
+/profiles/contrib/
+/themes/contrib/
+
+# Ignore configuration files that may contain sensitive information.
+/sites/*/settings*.php
+/sites/*/services*.yml
+
+# Ignore paths that contain user-generated content.
+/sites/*/files
+/sites/*/private
+_files

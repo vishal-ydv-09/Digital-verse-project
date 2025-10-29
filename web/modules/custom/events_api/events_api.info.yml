@@ -1,0 +1,5 @@
+name: 'Events API'
+type: module
+description: 'Provides JSON API endpoints for Event nodes.'
+package: 'Custom'
+core_version_requirement: ^10 || ^11

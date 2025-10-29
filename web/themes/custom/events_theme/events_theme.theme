@@ -1,0 +1,46 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Functions to support theming in the events_theme theme.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK() for html.html.twig.
+ */
+function events_theme_preprocess_html(array &$variables): void {
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page.html.twig.
+ */
+function events_theme_preprocess_page(array &$variables): void {
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function events_theme_preprocess_node(array &$variables): void {
+
+}
+
+
+
+function events_theme_suggestions_views_view_unformatted(array &$suggestions, array $variables) {
+  $view = $variables['view'];
+
+  // Suggest based on specific view ID.
+  if ($view->id() === 'events') {
+    $suggestions[] = 'views_view_unformatted__events_custom';
+  }
+
+  // Suggest based on display ID.
+  if ($view->current_display === 'block_1') {
+    $suggestions[] = 'views_view_unformatted__events__block_1_custom';
+  }
+}
+

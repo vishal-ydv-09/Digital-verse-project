@@ -1,0 +1,20 @@
+uuid: 1e54a8eb-0d37-4122-bad2-0139cc856f20
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime_range
+    - node
+id: node.field_event_date_time
+field_name: field_event_date_time
+entity_type: node
+type: daterange
+settings:
+  datetime_type: datetime
+module: datetime_range
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

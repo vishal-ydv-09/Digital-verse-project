@@ -1,0 +1,24 @@
+uuid: 774d688c-3ba6-4aaa-97f3-cccbc86b0cd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_body
+    - node.type.event
+  module:
+    - text
+id: node.event.field_body
+field_name: field_body
+entity_type: node
+bundle: event
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

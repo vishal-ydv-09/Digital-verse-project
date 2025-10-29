@@ -1,0 +1,73 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="featured-events">
+  {% if title %}
+    <h3 class="section-title">{{ title }}</h3>
+  {% endif %}
+  <div class="events-grid">
+    {% for row in rows %}
+      {% set node = row.content['#row']._entity %}
+      <div class="event-card">
+        <div class="event-image">
+          {% if node.field_event_image.entity %}
+            <img src="{{ file_url(node.field_event_image.entity.uri.value) }}" alt="{{ node.title.value }}">
+          {% endif %}
+        </div>
+
+        <div class="event-info">
+          <h3 class="event-title">
+            <a href="{{ path('entity.node.canonical', {'node': node.id()}) }}">
+              {{ node.title.value }}
+            </a>
+          </h3>
+
+          {# 🔹 Category (taxonomy reference) #}
+          {% if node.field_category.entity %}
+            <p class="event-category">
+              {{ node.field_category.entity.label }}
+            </p>
+          {% elseif node.field_category|length > 0 %}
+            <p class="event-category">
+              {% for term in node.field_category %}
+                {{ term.entity.label }}{% if not loop.last %}, {% endif %}
+              {% endfor %}
+            </p>
+          {% endif %}
+
+          {# 🔹 Date Range #}
+          {% if node.field_event_date_time is not empty %}
+            {% set start_date = node.field_event_date_time.value|date('D, M j, Y') %}
+            {% set end_date = node.field_event_date_time.end_value|date('D, M j, Y') %}
+            <p class="event-meta">
+              {{ start_date }}{% if end_date and end_date != start_date %} - {{ end_date }}{% endif %}
+            </p>
+          {% endif %}
+
+          {# 🔹 Location Field #}
+          {% if node.field_location.value %}
+            <p class="event-meta">{{ node.field_location.value }}</p>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+

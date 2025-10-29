@@ -1,0 +1,45 @@
+uuid: de63a541-c0f3-4091-83db-26cd5cc6ce6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hero_section_item.field_cta_button
+    - field.field.paragraph.hero_section_item.field_subtitle
+    - field.field.paragraph.hero_section_item.field_title
+    - paragraphs.paragraphs_type.hero_section_item
+  module:
+    - link
+id: paragraph.hero_section_item.default
+targetEntityType: paragraph
+bundle: hero_section_item
+mode: default
+content:
+  field_cta_button:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_subtitle:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }
