@@ -34,7 +34,10 @@ final class EventsApiController extends ControllerBase {
   /**
    * Constructs the controller.
    */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager, FileUrlGeneratorInterface $fileUrlGenerator) {
+  public function __construct(
+    EntityTypeManagerInterface $entityTypeManager,
+    FileUrlGeneratorInterface $fileUrlGenerator,
+  ) {
     $this->entityTypeManagerService = $entityTypeManager;
     $this->fileUrlGenerator = $fileUrlGenerator;
   }
@@ -53,8 +56,8 @@ final class EventsApiController extends ControllerBase {
    * Returns upcoming events as JSON.
    */
   public function list(): Response {
-    //$currentTime = (new \DateTime('now', new \DateTimeZone('UTC')))->format('Y-m-d\TH:i:s');
-
+    // $currentTime = (new \DateTime('now', new \DateTimeZone('UTC')))
+    // ->format('Y-m-d\TH:i:s');
     $query = $this->entityTypeManagerService
       ->getStorage('node')
       ->getQuery()
@@ -71,7 +74,9 @@ final class EventsApiController extends ControllerBase {
     }
 
     /** @var \Drupal\node\NodeInterface[] $nodes */
-    $nodes = $this->entityTypeManagerService->getStorage('node')->loadMultiple($nids);
+    $nodes = $this->entityTypeManagerService
+      ->getStorage('node')
+      ->loadMultiple($nids);
 
     $results = [];
     foreach ($nodes as $node) {
@@ -91,7 +96,8 @@ final class EventsApiController extends ControllerBase {
     if (!$node->get('field_event_image')->isEmpty()) {
       $file = $node->get('field_event_image')->entity;
       if ($file) {
-        $imageUrl = $this->fileUrlGenerator->generateAbsoluteString($file->getFileUri());
+        $imageUrl = $this->fileUrlGenerator
+          ->generateAbsoluteString($file->getFileUri());
       }
     }
 

@@ -54,8 +54,14 @@ jobs:
 
       - name: Run PHPCS if available
         run: |
-          if [ -f "vendor/bin/phpcs" ]; then
-            vendor/bin/phpcs -q
-          else
-            echo "PHPCS not installed; skipping code style checks."
-          fi
+            if [ -f "vendor/bin/phpcs" ]; then
+              if [ -d "web/modules/custom" ]; then
+                echo "Running PHPCS on custom modules..."
+                vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom
+              else
+                echo "No custom modules found; skipping PHPCS check."
+              fi
+            else
+              echo "PHPCS not installed; skipping code style checks."
+            fi
+        

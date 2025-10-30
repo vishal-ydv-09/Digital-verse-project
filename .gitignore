@@ -58,3 +58,5 @@ error_log
 db.sql.gz
 
 dumps/
+
+.php-cs-fixer.cache
