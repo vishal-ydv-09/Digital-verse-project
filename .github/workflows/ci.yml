@@ -17,9 +17,10 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.3'
           coverage: none
-          tools: composer:v2
+          extensions: mbstring, intl, gd, xml, dom, pdo_mysql
+          tools: composer:v2, drush
 
       - name: Get Composer cache directory
         id: composer-cache
@@ -58,4 +59,3 @@ jobs:
           else
             echo "PHPCS not installed; skipping code style checks."
           fi
-
