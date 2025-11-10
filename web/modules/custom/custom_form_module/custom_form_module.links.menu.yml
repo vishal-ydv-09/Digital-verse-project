@@ -1,0 +1,13 @@
+custom_form_module.form:
+  title: 'Custom Form'
+  route_name: custom_form_module.form
+  description: 'Submit your details.'
+  parent: system.main
+  weight: 0
+
+custom_form_module.data:
+  title: 'Form Submissions'
+  route_name: custom_form_module.data
+  description: 'View submitted data.'
+  parent: system.main
+  weight: 1

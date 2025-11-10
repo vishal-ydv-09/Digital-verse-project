@@ -1,0 +1,5 @@
+name: 'Simpletest custom Form'
+type: module
+description: 'Drupal custom module for simpletest form with captcha and database integration.'
+package: 'custom'
+core_version_requirement: ^10 || ^11

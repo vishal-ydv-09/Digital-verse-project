@@ -1,0 +1,60 @@
+<?php
+
+function simpletest_install() {
+    // Installation routines.
+    $schema = \Drupal::database()->schema();
+    if (!$schema->tableExists('simpletest_data')) {
+        $schema->createTable('simpletest_data', [
+            'fields' => [
+                'id' => [
+                    'type' => 'serial',
+                    'not null' => TRUE,
+                ],
+                'fullname' => [
+                    'type' => 'varchar',
+                    'length' => 255,
+                    'not null' => TRUE,
+                ],
+                'email' => [
+                    'type' => 'varchar',
+                    'length' => 255,
+                    'not null' => TRUE,
+                ],
+                'number' => [
+                    'type' => 'varchar',
+                    'length' => 20,
+                    'not null' => TRUE,
+                ],
+                'address' => [
+                    'type' => 'text',
+                    'not null' => TRUE,
+                ],
+                'dob' => [
+                    'type' => 'text',
+                    'not null' => TRUE,
+                ],
+                'gender' => [
+                    'type' => 'varchar',
+                    'length' => 50,
+                    'not null' => TRUE,
+                ],
+                'course' => [
+                    'type' => 'varchar',
+                    'length' => 100,
+                    'not null' => TRUE,
+                ],
+                'university' => [
+                    'type' => 'varchar',
+                    'length' => 255,
+                    'not null' => TRUE,
+                ],
+                'passport' => [
+                    'type' => 'varchar',
+                    'length' => 100,
+                    'not null' => TRUE,
+                ],
+            ],
+            'primary key' => ['id'],
+        ]);          
+}
+}

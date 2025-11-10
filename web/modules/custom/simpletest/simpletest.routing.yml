@@ -1,0 +1,15 @@
+simpletest.dynamic:
+  path: '/simpletest/form'
+  defaults:
+    _title: 'Simple form for testing'
+    _form: 'Drupal\simpletest\Form\ExampleForm'
+  requirements:
+    _permission: 'access content'
+
+simpletest.data:
+  path: '/form-submissions'
+  defaults:
+    _controller: '\Drupal\simpletest\Controller\DataListController::list'
+    _title: 'Form Submissions'
+  requirements:
+    _permission: 'access content'

@@ -60,3 +60,6 @@ db.sql.gz
 dumps/
 
 .php-cs-fixer.cache
+*.zip
+*.tar.gz
+*.rar

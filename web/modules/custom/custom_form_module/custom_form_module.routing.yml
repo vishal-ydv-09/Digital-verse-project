@@ -1,0 +1,15 @@
+custom_form_module.form:
+  path: '/custom-form'
+  defaults:
+    _form: '\Drupal\custom_form_module\Form\CustomRegistrationForm'
+    _title: 'Custom Registration Form'
+  requirements:
+    _permission: 'access content'
+
+custom_form_module.data:
+  path: '/form-submissions'
+  defaults:
+    _controller: '\Drupal\custom_form_module\Controller\DataListController::list'
+    _title: 'Form Submissions'
+  requirements:
+    _permission: 'access content'

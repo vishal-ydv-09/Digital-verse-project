@@ -1,0 +1,24 @@
+<?php
+use Drupal\Core\Database\Database;
+
+function custom_form_module_install() {
+  $schema = Database::getConnection()->schema();
+  if (!$schema->tableExists('custom_form_submissions')) {
+    $schema->createTable('custom_form_submissions', [
+      'fields' => [
+        'id' => ['type' => 'serial', 'not null' => TRUE],
+        'full_name' => ['type' => 'varchar', 'length' => 255],
+        'email' => ['type' => 'varchar', 'length' => 255],
+        'phone' => ['type' => 'varchar', 'length' => 20],
+        'address' => ['type' => 'text'],
+        'gender' => ['type' => 'varchar', 'length' => 20],
+        'dob' => ['type' => 'varchar', 'length' => 20],
+        'course' => ['type' => 'varchar', 'length' => 255],
+        'university' => ['type' => 'varchar', 'length' => 255],
+        'passport' => ['type' => 'varchar', 'length' => 20],
+        'created' => ['type' => 'int', 'not null' => TRUE],
+      ],
+      'primary key' => ['id'],
+    ]);
+  }
+}

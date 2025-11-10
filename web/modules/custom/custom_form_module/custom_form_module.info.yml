@@ -1,0 +1,7 @@
+name: 'Custom Form Module'
+type: module
+description: 'Provides a custom form (Form API) with CAPTCHA, email, and data listing.'
+core_version_requirement: ^11
+package: Custom
+dependencies:
+  - drupal:captcha
