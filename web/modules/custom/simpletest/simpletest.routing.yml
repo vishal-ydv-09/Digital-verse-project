@@ -13,3 +13,11 @@ simpletest.data:
     _title: 'Form Submissions'
   requirements:
     _permission: 'access content'
+
+simpletest.data_api:
+  path: '/data-api'
+  defaults:
+    _controller: '\Drupal\simpletest\Controller\DataListController::dataApi'
+    _title: 'Form Submissions'
+  requirements:
+    _permission: 'access content'

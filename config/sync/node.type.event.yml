@@ -1,14 +1,7 @@
 uuid: 1de3999d-e92f-42c1-8e7e-3d2c7ed7c90a
 langcode: en
 status: true
-dependencies:
-  module:
-    - menu_ui
-third_party_settings:
-  menu_ui:
-    available_menus:
-      - main
-    parent: 'main:'
+dependencies: {  }
 name: Event
 type: event
 description: null

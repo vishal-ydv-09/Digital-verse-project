@@ -2,14 +2,19 @@
 
 namespace Drupal\simpletest\Controller;
 
+use Drupal\common_test\Render\MainContent\JsonRenderer;
+
 use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\HttpFoundation\JsonResponse;  
 use Symfony\Component\HttpFoundation\Request;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Url;
 
-class DataListController extends ControllerBase {
+class DataListController extends ControllerBase
+{
 
-  public function list(Request $request) {
+  public function list(Request $request)
+  {
     // Get the search value from the URL (?search=...)
     $search = trim($request->query->get('search', ''));
 
@@ -64,4 +69,30 @@ class DataListController extends ControllerBase {
 
     return $build;
   }
+
+
+  public function dataApi()
+  {
+    $client = \Drupal::httpClient();
+    $response = $client->get('https://fake-json-api.mock.beeceptor.com/companies', [
+      'headers' => [
+        'Accept' => 'application/json',
+      ],
+    ]);
+
+
+    // dd($response->getBody());
+    if ($response->getStatusCode() == 200) {
+      $data = json_decode($response->getBody(), true);
+      //return JsonResponseRenderer::render($data);
+       return new JsonResponse($data);
+    } else {
+      return [
+        '#markup' => $this->t('Failed to fetch data from API.'),
+      ];
+    }
+
+  }
+
+
 }

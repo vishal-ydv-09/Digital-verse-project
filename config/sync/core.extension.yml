@@ -10,6 +10,7 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
+  captcha: 0
   ckeditor5: 0
   comment: 0
   config: 0
@@ -31,9 +32,9 @@ module:
   help: 0
   history: 0
   image: 0
+  image_captcha: 0
   link: 0
   menu_link_content: 0
-  menu_ui: 0
   mysql: 0
   node: 0
   options: 0
@@ -42,6 +43,7 @@ module:
   path_alias: 0
   search: 0
   shortcut: 0
+  simpletest: 0
   system: 0
   taxonomy: 0
   text: 0
