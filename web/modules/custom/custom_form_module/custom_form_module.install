@@ -1,8 +1,14 @@
 <?php
+
 use Drupal\Core\Database\Database;
 
+/**
+ * Implements hook_install().
+ */
 function custom_form_module_install() {
   $schema = Database::getConnection()->schema();
+
+  // ----- 1. Create custom_form_submissions table -----
   if (!$schema->tableExists('custom_form_submissions')) {
     $schema->createTable('custom_form_submissions', [
       'fields' => [
@@ -19,6 +25,24 @@ function custom_form_module_install() {
         'created' => ['type' => 'int', 'not null' => TRUE],
       ],
       'primary key' => ['id'],
+    ]);
+  }
+
+  // ----- 2. Create custom_note_table table -----
+  if (!$schema->tableExists('custom_note_table')) {
+    $schema->createTable('custom_note_table', [
+      'fields' => [
+        'nid' => [
+          'type' => 'int',
+          'not null' => TRUE,
+        ],
+        'custom_note' => [
+          'type' => 'varchar',
+          'length' => 255,
+          'not null' => FALSE,
+        ],
+      ],
+      'primary key' => ['nid'],
     ]);
   }
 }

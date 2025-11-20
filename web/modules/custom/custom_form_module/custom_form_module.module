@@ -12,3 +12,96 @@ function custom_form_module_mail($key, &$message, $params) {
       break;
   }
 }
+
+
+
+// function custom_form_module_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+//   // Add your code here.
+//   dump($form_id);
+//   if ($form_id == 'node_daily_news_edit_form') {
+//   // Add custom field
+//   $form['custom_note'] = [
+//     '#type' => 'textfield',
+//     '#title' => t('Custom Note'),
+//     '#description' => t('Enter your note.'),
+//     '#required' => TRUE,
+//   ];
+    
+//   }
+
+// }
+
+
+
+
+
+
+function custom_form_module_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  if ($form_id == 'node_daily_news_edit_form' || $form_id == 'node_daily_news_form') {
+
+    $node = $form_state->getFormObject()->getEntity();
+    $nid = $node->id();
+
+    $stored = '';
+
+    if ($nid) {
+      $stored = \Drupal::database()
+        ->select('custom_note_table', 'c')
+        ->fields('c', ['custom_note'])
+        ->condition('nid', $nid)
+        ->execute()
+        ->fetchField();
+    }
+
+    $form['custom_note'] = [
+      '#type' => 'textfield',
+      '#title' => t('Custom Note'),
+      '#default_value' => $stored ?? '',
+    ];
+  }
+}
+
+
+
+
+
+
+
+/**
+ * Implements hook_entity_insert().
+ */
+function custom_form_module_entity_insert(\Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'daily_news') {
+
+    $value = \Drupal::request()->request->get('custom_note') ?? '';
+
+    \Drupal::database()->insert('custom_note_table')
+      ->fields([
+        'nid' => $entity->id(),
+        'custom_note' => $value,
+      ])
+      ->execute();
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function custom_form_module_entity_update(\Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'daily_news') {
+
+    $value = \Drupal::request()->request->get('custom_note') ?? '';
+
+    \Drupal::database()->update('custom_note_table')
+      ->fields([
+        'custom_note' => $value,
+      ])
+      ->condition('nid', $entity->id())
+      ->execute();
+  }
+}
+
+
+
+
